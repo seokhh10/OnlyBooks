@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Project extends Model {}
+class Review extends Model {}
 
-Project.init(
+Review.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,11 +11,19 @@ Project.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    book_title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
+    book_author: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    book_rate:{
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    review_text: {
       type: DataTypes.STRING,
     },
     date_created: {
@@ -23,14 +31,10 @@ Project.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    needed_funding: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
-    },
-    user_id: {
+    reader_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'user',
+        model: 'reader',
         key: 'id',
       },
     },
@@ -40,8 +44,8 @@ Project.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'project',
+    modelName: 'review',
   }
 );
 
-module.exports = Project;
+module.exports = Review;
