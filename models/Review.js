@@ -11,18 +11,6 @@ Review.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    book_title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    book_author: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    book_rate:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     review_text: {
       type: DataTypes.STRING,
     },
@@ -31,10 +19,21 @@ Review.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
+    rating:{
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     reader_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'reader',
+        model: 'reader', 
+        key: 'id',
+      },
+    },
+    book_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'book',
         key: 'id',
       },
     },
