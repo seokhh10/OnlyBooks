@@ -18,4 +18,4 @@ Review.belongsTo(Book, {
   foreignKey: 'book_id'
 });
 
-module.exports = { Reader, Review };
+module.exports = { Reader, Review, Book };

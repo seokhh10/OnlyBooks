@@ -1,20 +1,14 @@
 [
   {
-    "book_title": "Atomic Habits",
-    "book_author": "James Clear",
-    "book_rate": 5,
+    "rating": 5,
     "review_text": "Atomic Habits by James Clear is one of those rare books that I immediately read twice in a row"
   },
   {
-    "book_title": "The Lost Bookshop",
-    "book_author": "Evie Woods",
-    "book_rate": 4,
+    "rating": 4,
     "review_text": "If you're deciding whether or not you should read this book... the answer is YES without a doubt!! You will not regret it"
   },
   {
-    "book_title": "Storm Clouds Rolling In",
-    "book_author": "Ginny Dye",
-    "book_rate": 5,
+    "rating": 5,
     "review_text": "Ginny Dye writes with such obvious clarity of thought and combination of History rewritten and fiction that it's difficult to separate the two"
   }
 ]
