@@ -1,8 +1,10 @@
 <div class="text-center">
-  <h2>{{name}}</h2>
-  <p>{{{get_emoji}}}</p>
+  <h2>{{title}}</h2>
+
+  {{!-- Reviews will be displayed beside the book, so display reviews attached to this book_id --}}
+  {{!-- Use each reviews as |review| to loop over every review--}}
   <p>{{description}}</p>
-  <p>Created by {{user.name}} on {{format_date date_created}}</p>
+  <p>Created by {{reader.name}} on {{format_date date_created}}</p>
   <p>
     <span for="img" aria-label="money">💲</span>
     <span class="dollar-amount">{{format_amount needed_funding}}</span>
