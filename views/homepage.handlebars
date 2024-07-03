@@ -2,7 +2,7 @@
 site --}}
 <div>
   {{#each bookLimit as |book| }}
-  <div class="row mb-4 bookLimit"></div>
+  <div class="row mb-4 book"></div>
   <div class="col-md-5">
     <h2>
       <a href="/book/{{book.id}}">{{book.title}}</a>
@@ -10,3 +10,7 @@ site --}}
   </div>
 </div>
 {{/each}}
+
+<div>
+  <a href="/bookList">Browse All Books</a>
+</div>
