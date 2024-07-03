@@ -8,21 +8,29 @@
 
 <div class="row mt-4">
   <div class="col-md-6">
-    {{!-- Create new Review --}}
-    <h3>Create a New Review:</h3>
+    {{!-- Create new book with a Review --}} 
+    <h3>Create a new book with a review:</h3>
 
-    <form class="form new-project-form">
+    <form class="form new-review-form">
+      
       <div class="form-group">
-        <label for="project-name">Book title:</label>
-        <input class="form-input" type="text" id="project-name" name="project-name" />
+        <label for="book-title">Book title:</label>
+        <input class="form-input" type="text" id="book-title" name="book-title" />
       </div>
+
       <div class="form-group">
-        <label for="project-funding">Rating:</label>
-        <input class="form-input" type="number" id="project-funding" name="project-funding" />
+        <label for="book-author">Book author:</label>
+        <input class="form-input" type="text" id="book-author" name="book-author" />
       </div>
+
       <div class="form-group">
-        <label for="project-desc">Review text:</label>
-        <textarea class="form-input" id="project-desc" name="project-desc"></textarea>
+        <label for="review-text">Your review:</label>
+        <input class="form-input" type="text" id="review-text" name="review-text" />
+      </div>
+
+      <div class="form-group">
+        <label for="review-rating">Your rating:</label>
+        <input class="form-input" type="number" id="review-rating" name="review-rating" />
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Create</button>
@@ -30,7 +38,8 @@
     </form>
   </div>
 
-{{!-- Reviews instead of projects --}}
+
+{{!-- Reviews instead of projects 
   {{#if projects.length}}
   <div class="col-md-6 project-list">
     <h3>Current Projects:</h3>
@@ -47,6 +56,6 @@
     {{/each}}
   </div>
   {{/if}}
-</div>
+</div>  --}}
 
 <script src="./js/profile.js"></script>

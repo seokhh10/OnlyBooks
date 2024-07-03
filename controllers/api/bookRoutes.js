@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Book} = require('../../models');
+const { Book } = require('../../models');
 
 router.get('/:id', async (req, res) => {
     // find a single book by its `id` including its associated reviews 
@@ -38,7 +38,7 @@ router.post("/", async (req, res)=>{
 
         res.status(200).json(newBook)
 
-
+        console.log(newBook.id);
     } catch(err){
         console.log(err);
         res.status(500).json(err);

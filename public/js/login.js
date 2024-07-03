@@ -7,7 +7,8 @@ const loginFormHandler = async (event) => {
 
   if (email && password) {
     // Send a POST request to the API endpoint
-    const response = await fetch('/api/users/login', {
+    // change to readers
+    const response = await fetch('/api/readers/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: { 'Content-Type': 'application/json' },
@@ -17,6 +18,7 @@ const loginFormHandler = async (event) => {
       // If successful, redirect the browser to the profile page
       document.location.replace('/profile');
     } else {
+      console.log('user not found');
       alert(response.statusText);
     }
   }
@@ -24,21 +26,31 @@ const loginFormHandler = async (event) => {
 
 const signupFormHandler = async (event) => {
   event.preventDefault();
+  console.log('Entrando a singup');
 
   const name = document.querySelector('#name-signup').value.trim();
   const email = document.querySelector('#email-signup').value.trim();
   const password = document.querySelector('#password-signup').value.trim();
 
   if (name && email && password) {
-    const response = await fetch('/api/users', {
+    console.log('Entrando al fecth del sing in');
+    console.log('con ruta /api/readers');
+    console.log(name);
+    console.log(email);
+    // FC cambiando a /api/readers
+    const response = await fetch('/api/readers', {
       method: 'POST',
       body: JSON.stringify({ name, email, password }),
       headers: { 'Content-Type': 'application/json' },
     });
+    console.log(response.statusText);
+
 
     if (response.ok) {
+      console.log('singup ok and send to /profile');
       document.location.replace('/profile');
     } else {
+      console.log('error en el fetch');
       alert(response.statusText);
     }
   }

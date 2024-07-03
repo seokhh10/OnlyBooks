@@ -1,20 +1,30 @@
 const newFormHandler = async (event) => {
   event.preventDefault();
 
-  const name = document.querySelector('#project-name').value.trim();
-  const needed_funding = document.querySelector('#project-funding').value.trim();
-  const description = document.querySelector('#project-desc').value.trim();
+  const title = document.querySelector('#book-title').value.trim();
+  const author = document.querySelector('#book-author').value.trim();
+  const review_text = document.querySelector('#review-text').value.trim();
+  const rating = document.querySelector('#review-rating').value.trim();
 
-  if (name && needed_funding && description) {
-    const response = await fetch(`/api/projects`, {
+  if (title && author && review_text && rating) {
+    console.log('Listo para el fetch');
+    console.log(title);
+    console.log(author);
+    
+    const response = await fetch('/api/books', {
       method: 'POST',
-      body: JSON.stringify({ name, needed_funding, description }),
+      body: JSON.stringify({ title, author }),
       headers: {
         'Content-Type': 'application/json',
       },
     });
 
     if (response.ok) {
+
+      
+
+      // hacer un post a los review 
+
       document.location.replace('/profile');
     } else {
       alert('Failed to create project');
@@ -39,9 +49,9 @@ const delButtonHandler = async (event) => {
 };
 
 document
-  .querySelector('.new-project-form')
+  .querySelector('.new-review-form')
   .addEventListener('submit', newFormHandler);
 
-document
-  .querySelector('.project-list')
-  .addEventListener('click', delButtonHandler);
+// document
+//   .querySelector('.project-list')
+//   .addEventListener('click', delButtonHandler);
