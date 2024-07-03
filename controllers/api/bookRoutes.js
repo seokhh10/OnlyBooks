@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Book} = require('../../models');
+const { Book } = require('../../models');
 
 router.get('/:id', async (req, res) => {
     // find a single book by its `id` including its associated reviews 
@@ -25,7 +25,7 @@ router.get('/:id', async (req, res) => {
    try {
        const bookData = await Book.findAll();
        res.status(200).json(bookData);
-       res.render('bookList')
+       res.render('books')
    } catch (err) {
      res.status(500).json(err);
    }
@@ -38,7 +38,7 @@ router.post("/", async (req, res)=>{
 
         res.status(200).json(newBook)
 
-
+        console.log(newBook.id);
     } catch(err){
         console.log(err);
         res.status(500).json(err);

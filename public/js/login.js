@@ -7,6 +7,8 @@ const loginFormHandler = async (event) => {
 
   if (email && password) {
     // Send a POST request to the API endpoint
+    // change to readers
+
     const response = await fetch('/api/readers/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
@@ -17,6 +19,7 @@ const loginFormHandler = async (event) => {
       // If successful, redirect the browser to the profile page
       document.location.replace('/profile');
     } else {
+      console.log('user not found');
       alert(response.statusText);
     }
   }
@@ -24,6 +27,7 @@ const loginFormHandler = async (event) => {
 
 const signupFormHandler = async (event) => {
   event.preventDefault();
+  console.log('Entrando a singup');
 
   const name = document.querySelector('#name-signup').value.trim();
   const email = document.querySelector('#email-signup').value.trim();
@@ -35,10 +39,14 @@ const signupFormHandler = async (event) => {
       body: JSON.stringify({ name, email, password }),
       headers: { 'Content-Type': 'application/json' },
     });
+    console.log(response.statusText);
+
 
     if (response.ok) {
+      console.log('singup ok and send to /profile');
       document.location.replace('/profile');
     } else {
+      console.log('error en el fetch');
       alert(response.statusText);
     }
   }

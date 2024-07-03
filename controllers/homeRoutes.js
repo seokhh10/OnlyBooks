@@ -9,11 +9,14 @@ router.get('/', async (req, res) => {
 
     // Serialize data so the template can read it
     const books = bookData.map((Book) => Book.get({ plain: true }));
+    const bookLimit = books.slice(0, 5)
 
     // Pass serialized data and session flag into template
     res.render('homepage', { 
-      books, 
-      logged_in: req.session.logged_in 
+      bookLimit
+    });
+    res.render('bookList', { 
+      books
     });
   } catch (err) {
     res.status(500).json(err);
@@ -29,6 +32,7 @@ router.get('/book/:id', async (req, res) => {
       }
     });
 
+
     const book = bookData.get({ plain: true });
     const reviews = reviewData.map(r => r.get({ plain: true }));
 
@@ -36,9 +40,15 @@ router.get('/book/:id', async (req, res) => {
     console.log('>>>>>>>>>>>>>>>');
     console.log('book >>>', book);
 
-    res.render('Book', {
-      ...{ book, reviews },
+    res.render('book', {
+      ...book,
+
       logged_in: req.session.logged_in
+    });
+    
+    res.render('bookReview', {
+      ...{ book, reviews },
+            logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -49,10 +59,14 @@ router.get('/book/:id', async (req, res) => {
 router.get('/profile', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
+    // const readerData = await Reader.findByPk(req.session.reader_id, {
+    //   attributes: { exclude: ['password'] },
+    //   include: [{ model: Review }],
+    // });
+
     const readerData = await Reader.findByPk(req.session.reader_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Book }],
-    });
+      attributes: { exclude: ['password'] }
+
 
     const reader = readerData.get({ plain: true });
 

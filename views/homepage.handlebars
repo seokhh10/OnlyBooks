@@ -1,18 +1,12 @@
-{{!-- Display 5 recommended books (either random or we choose 5 placeholders for now) and then 3 reviews by users of the site --}}
-
-
-<!-- THIS IS THE CODE FOR BOOKLIST AS A PLACEHOLDER, PLEASE REPLACE IT -->
-{{#each books as |book| }}
-<div class="row mb-4 book">
+{{!-- Display 5 recommended books (either random or we choose 5 placeholders for now) and then 3 reviews by users of the
+site --}}
+<div>
+  {{#each bookLimit as |book| }}
+  <div class="row mb-4 bookLimit"></div>
   <div class="col-md-5">
     <h2>
       <a href="/book/{{book.id}}">{{book.title}}</a>
     </h2>
   </div>
-  {{!-- <div class="col-md-7">
-    <p>
-      {{REVIEW id=1 of selected book}}
-    </p>
-  </div> --}}
 </div>
 {{/each}}
