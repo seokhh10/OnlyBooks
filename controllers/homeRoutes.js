@@ -65,7 +65,8 @@ router.get('/profile', withAuth, async (req, res) => {
     // });
 
     const readerData = await Reader.findByPk(req.session.reader_id, {
-      attributes: { exclude: ['password'] }
+      attributes: { exclude: ['password'] },
+    });
 
 
     const reader = readerData.get({ plain: true });
