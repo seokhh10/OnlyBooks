@@ -25,7 +25,7 @@ router.get('/:id', async (req, res) => {
    try {
        const bookData = await Book.findAll();
        res.status(200).json(bookData);
-       res.render('bookList')
+       res.render('books')
    } catch (err) {
      res.status(500).json(err);
    }
