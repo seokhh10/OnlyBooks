@@ -1,11 +1,12 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { Reader } = require('../../models');
 
 // Create a new reader user.
 router.post('/', async (req, res) => {
   try {
-    const userData = await User.create(req.body);
-
+    // Change to ...
+    console.log('cargando router.post /'); 
+    const userData = await Reader.create(req.body);
     req.session.save(() => {
       req.session.reader_id = userData.id;
       req.session.logged_in = true;
@@ -20,7 +21,7 @@ router.post('/', async (req, res) => {
 // Authenticate the reader user.
 router.post('/login', async (req, res) => {
   try {
-    const userData = await User.findOne({ where: { email: req.body.email } });
+    const userData = await Reader.findOne({ where: { email: req.body.email } });
 
     if (!userData) {
       res
