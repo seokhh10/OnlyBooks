@@ -8,6 +8,7 @@ const loginFormHandler = async (event) => {
   if (email && password) {
     // Send a POST request to the API endpoint
     // change to readers
+
     const response = await fetch('/api/readers/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
@@ -33,11 +34,6 @@ const signupFormHandler = async (event) => {
   const password = document.querySelector('#password-signup').value.trim();
 
   if (name && email && password) {
-    console.log('Entrando al fecth del sing in');
-    console.log('con ruta /api/readers');
-    console.log(name);
-    console.log(email);
-    // FC cambiando a /api/readers
     const response = await fetch('/api/readers', {
       method: 'POST',
       body: JSON.stringify({ name, email, password }),

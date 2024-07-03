@@ -26,12 +26,29 @@ router.get('/', async (req, res) => {
 router.get('/book/:id', async (req, res) => {
   try {
     const bookData = await Book.findByPk(req.params.id);
+    const reviewData = await Review.findAll({
+      where: {
+        book_id: req.params.id
+      }
+    });
+
 
     const book = bookData.get({ plain: true });
+    const reviews = reviewData.map(r => r.get({ plain: true }));
+
+    console.log('reviews >>>', reviews);
+    console.log('>>>>>>>>>>>>>>>');
+    console.log('book >>>', book);
 
     res.render('book', {
       ...book,
+
       logged_in: req.session.logged_in
+    });
+    
+    res.render('bookReview', {
+      ...{ book, reviews },
+            logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
