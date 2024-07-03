@@ -1,5 +1,6 @@
 const sequelize = require('../config/connection');
 const { Reader, Review, Book } = require('../models');
+import { faker } from '@faker-js/faker'; 
 
 const readerData = require('./readerData.json');
 const reviewData = require('./reviewData.json');
