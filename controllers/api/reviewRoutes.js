@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Review } = require('../../models');
+const { Review, Book } = require('../../models');
 const moment = require('moment');
 
 const withAuth = require('../../utils/auth');
@@ -16,6 +16,40 @@ router.post('/:book_id', withAuth, async (req, res) => {
     res.status(200).json(newReview);
   } catch (err) {
     res.status(400).json(err);
+  }
+});
+
+// GET a review
+router.get('/:id', withAuth, async (req, res) => {
+  try {
+    const reviewData = await Review.findByPk(req.params.id, {
+      include: [ {model: Book}  ],      
+    });
+
+    if (!reviewData) {
+      res.status(404).json({ message: 'No review found with this id!' });
+      return;
+    }
+    res.render('review');
+    res.status(200).json(reviewData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/', withAuth, async (req, res) => {
+  try {
+    const reviewData = await Review.findAll();
+
+    if (!reviewData) {
+      res.status(404).json({ message: 'No review found with this id!' });
+      return;
+    }
+
+    res.render('reviews')
+    res.status(200).json(reviewData);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
@@ -50,7 +84,7 @@ router.get('/reader/:reader_id', withAuth, async (req, res) => {
   }
 });
 
-// GET All lastest reviews where date_created is greater than today - 31 days. GET localhost:3002/api/reviews/latest
+// GET All latest reviews where date_created is greater than today - 31 days. GET localhost:3002/api/reviews/latest
 router.get('/latest', withAuth, async (req, res) => {
   try {
     const newReview = await Review.findAll({
