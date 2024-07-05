@@ -7,11 +7,8 @@ const newFormHandler = async (event) => {
   const rating = document.querySelector('#review-rating').value.trim();
 
   if (title && author && review_text && rating) {
-    console.log('Listo para el fetch');
-    console.log(title);
-    console.log(author);
-    
-    const response = await fetch('/api/books', {
+    console.log('fetch POST for a book and the review ');    
+    const responseBook = await fetch('/api/books', {
       method: 'POST',
       body: JSON.stringify({ title, author }),
       headers: {
@@ -19,16 +16,22 @@ const newFormHandler = async (event) => {
       },
     });
 
-    if (response.ok) {
+    const data = await responseBook.json();
+    console.log(data.id);
+     
+    const responseReview = await fetch(`/api/reviews/${data.id}`, {
+      method: 'POST',
+      body: JSON.stringify({ review_text, rating }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-      
-
-      // hacer un post a los review 
-
-      document.location.replace('/profile');
-    } else {
-      alert('Failed to create project');
-    }
+    if (responseBook.ok && responseReview.ok) {
+          document.location.replace('/profile');
+       } else {
+          alert('Failed to create book and review');
+       }
   }
 };
 

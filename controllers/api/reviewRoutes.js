@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Review, Book } = require('../../models');
+const { Review, Book, Reader } = require('../../models');
 const moment = require('moment');
 
 const withAuth = require('../../utils/auth');
@@ -53,20 +53,54 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
-// GET All reviews by book_id. GET localhost:3002/api/reviews/3 
-router.get('/:book_id', withAuth, async (req, res) => {
+// GET All reviews by book_id. GET localhost:3001/api/reviews/3 
+// router.get('/:book_id', withAuth, async (req, res) => {
+//   try {
+//     const newReview = await Review.findAll({
+//       where: {
+//         book_id: req.params.book_id
+//       }
+//     });
+
+//     res.status(200).json(newReview);
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// });
+
+
+// GET All reviews by book_id. GET localhost:3001/api/reviews/3
+router.get('/book/:book_id', async (req, res) => {
   try {
-    const newReview = await Review.findAll({
+    console.log('entrando a /book/:book_id');
+    const bookData = await Book.findByPk(req.params.book_id);
+    const reviewData = await Review.findAll({
+      include: [ { model: Reader} ],
       where: {
         book_id: req.params.book_id
       }
     });
 
-    res.status(200).json(newReview);
+    const book = bookData.get({ plain: true });
+    const reviews = reviewData.map(r => r.get({ plain: true }));
+
+    console.log('reviews >>>', reviews);
+    console.log('>>>>>>>>>>>>>>>');
+    console.log('book >>>', book);
+
+    res.render('book', {
+      ...{ book, reviews },
+      logged_in: req.session.logged_in
+    });
   } catch (err) {
-    res.status(400).json(err);
+    console.log('saliendo por error');
+    console.log(err);
+    res.status(500).json(err);
   }
 });
+
+
+
 
 
 // GET All reviews by user_id.  GET localhost:3002/api/reviews/reader/iskanalu.
