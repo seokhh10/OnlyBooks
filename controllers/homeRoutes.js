@@ -47,7 +47,13 @@ router.get('/book/:id', async (req, res) => {
     });
 
     const book = bookData.get({ plain: true });
-    const reviews = reviewData.map(r => r.get({ plain: true }));
+    const reviews = await Promise.all(reviewData
+      .map(review => review.get({ plain: true }))
+      .map(async (review) => ({
+        ...review, 
+        readerName: (await Reader.findByPk(review.reader_id))?.get({ plain: true })?.name
+      }))
+    )
 
     console.log('reviews >>>', reviews);
     console.log('>>>>>>>>>>>>>>>');

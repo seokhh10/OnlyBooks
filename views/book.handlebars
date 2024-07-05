@@ -3,23 +3,30 @@
 
   {{!-- Reviews will be displayed beside the book, so display reviews attached to this book_id --}}
      
- <div class="container-book">
-        <div class="book-info">
-            {{!-- <img src="path/to/your/book-cover.jpg" alt="Book cover"> --}}
+ <div class="container-book row">
+        <div class="book-info col-3" id="{{book.id}}">
             <h1>{{book.title}}</h1>
         </div>
         {{!-- Use each reviews as |review| to loop over every review--}}
-        <div class="reviews">
+        <div class="reviews col-8">
+          <h3>Reviews</h3>
+          <button id="add-new-review" class="btn btn-primary add-review">Add New Review</button>
           {{#each reviews as |review|}}
-            <div class="review">
-                <div class="rating">{{review.rating}}/5</div>
-                <div class="username">{{review.reader_id}}</div>
-                <div class="review-text">
+            <div class="review row">
+                <div class="col-2">
+                  <div class="rating">{{review.rating}}/5</div>
+                  <div class="username">{{review.readerName}}</div>
+                </div>
+                <div class="col-10">
+                  <div class="review-text">
                     {{review.review_text}}
+                </div>
                 </div>
             </div>
           {{/each}}
         </div>
     </div>
 </div>
+
+<script src="/js/add-review.js"></script>
 
