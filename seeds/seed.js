@@ -5,6 +5,24 @@ import { faker } from '@faker-js/faker';
 const readerData = require('./readerData.json');
 const reviewData = require('./reviewData.json');
 const bookData = require('./bookData.json');
+const { faker } = require('@faker-js/faker');
+
+//Generate a list of books
+const generateFakeBooks = (numBooks) =>{
+const books = [];
+for (let i = 0; i < numBooks; i++) {
+    const book = {
+        title: faker.music.songName(),
+        author: faker.person.fullName(),
+        };
+        books.push(book);
+}
+return books;
+};
+
+//Generate 10 books
+const fakeBooks = generateFakeBooks(10);
+console.log(fakeBooks);
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -14,10 +32,7 @@ const seedDatabase = async () => {
     returning: true,
   });
 
-  const book = await Book.bulkCreate(bookData, {
-    individualHooks: true,
-    returning: true,
-  });
+  const book = await Book.bulkCreate(fakeBooks);
 
   for (const review of reviewData) {
     await Review.create({

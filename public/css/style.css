@@ -30,19 +30,36 @@ header, .project:not(:last-child) {
 .book-info {
   flex: 1;
   margin-right: 20px;
+  height: 300px;
+  background-color: #9db59d;
+  display: flex;
+  border-radius: 10px;
+  border-left: 10px solid #6e1212;
 }
-.book-info img {
-  width: 100%;
-  height: auto;
+
+
+.book-info h1 {
+  margin: auto;
+  margin-top: 50px;
+  font-family: cursive;
+  transform: rotate(-6deg);
 }
+
 .reviews {
   flex: 2;
+  margin-left: 20px;
 }
+.add-review {
+  margin-bottom: 10px;
+}
+
 .review {
   border: 1px solid #ccc;
   padding: 10px;
   margin-bottom: 10px;
+  border-radius: 5px;
 }
+
 .rating {
   font-weight: bold;
   font-size: 1.2em;
@@ -53,4 +70,5 @@ header, .project:not(:last-child) {
 }
 .review-text {
   margin-top: 10px;
+  text-align: left;
 }
