@@ -45,19 +45,23 @@ header, .project:not(:last-child) {
   transform: rotate(-6deg);
 }
 
+.review {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.homepageReview {
+  
+}
+
 .reviews {
   flex: 2;
   margin-left: 20px;
 }
 .add-review {
   margin-bottom: 10px;
-}
-
-.review {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
 }
 
 .rating {

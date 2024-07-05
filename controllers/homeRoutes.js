@@ -6,14 +6,32 @@ router.get('/', async (req, res) => {
   try {
     // Get all Books
     const bookData = await Book.findAll();
+    const reviewData = await Review.findAll({
+      include: [
+        {
+          model: Book,
+          attributes: ['title'],
+        },
+      ],
+    });
 
     // Serialize data so the template can read it
     const books = bookData.map((Book) => Book.get({ plain: true }));
-    const bookLimit = books.slice(0, 5)
+    const bookLimit = books.slice(0, 5);
+    const reviews = await Promise.all(reviewData
+      .map(review => review.get({ plain: true }))
+      .map(async (review) => ({
+        ...review,
+        readerName: (await Reader.findByPk(review.reader_id))?.get({ plain: true })?.name,
+        bookTitle:(await Book.findByPk(review.book_id))?.get({ plain: true })?.title
+      }))
+    );
+    const reviewLimit = reviews.slice(0, 3);
 
     res.render('homepage', {
-        bookLimit
-      });
+      ...{ bookLimit, reviewLimit },
+      logged_in: req.session.logged_in
+    });
 
   } catch (err) {
     res.status(500).json(err);
@@ -27,7 +45,7 @@ router.get('/bookList', async (req, res) => {
 
     // Serialize data so the template can read it
     const books = bookData.map((Book) => Book.get({ plain: true }));
-    
+
     // Pass serialized data and session flag into template
     res.render('bookList', {
       books
@@ -50,8 +68,8 @@ router.get('/book/:id', async (req, res) => {
     const reviews = await Promise.all(reviewData
       .map(review => review.get({ plain: true }))
       .map(async (review) => ({
-        ...review, 
-        readerName: (await Reader.findByPk(review.reader_id))?.get({ plain: true })?.name
+        ...review,
+        readerName: (await Reader.findByPk(review.reader_id))?.get({ plain: true })?.name,
       }))
     )
 
