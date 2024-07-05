@@ -1,6 +1,7 @@
 {{!-- Display 5 recommended books (either random or we choose 5 placeholders for now) and then 3 reviews by users of the
 site --}}
-<div>
+<div class="col-8">
+  <h3>Todays recommendations</h3>
   {{#each bookLimit as |book| }}
   <div class="row mb-4 book"></div>
   <div class="col-md-5">
@@ -9,8 +10,27 @@ site --}}
     </h2>
   </div>
 </div>
+</div>
 {{/each}}
 
 <div>
   <a href="/bookList">Browse All Books</a>
+</div>
+
+<div class="reviews col-8">
+  <h3>Check out these reviews by users of our site!</h3>
+  {{#each reviewLimit as |review|}}
+  <div class="homepageReview col-4">
+    <div class="col-2">
+      <div class="book">{{review.bookTitle}}</div>
+      <div class="rating">{{review.rating}}/5</div>
+      <div class="username">{{review.readerName}}</div>
+    </div>
+    <div class="col-10">
+      <div class="review-text">
+        {{review.review_text}}
+      </div>
+    </div>
+  </div>
+  {{/each}}
 </div>
