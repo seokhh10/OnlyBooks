@@ -2,6 +2,68 @@ header, .project:not(:last-child) {
   border-bottom: 1px solid #ccc;
 }
 
+header {
+  background-color: #262626;
+  color: white;
+  border-bottom: 3px solid #1b89bc;
+  text-align: center;
+}
+
+header h1 {
+  display: inline-block;
+  font-family: math;
+}
+
+header nav {
+  margin-top: 15px;
+  float: right;
+}
+
+header a {
+  color: white;
+}
+
+header button.no-button {
+  color: white;
+}
+
+.backdrop {
+  height: 110%;
+  width: 100vw;
+  position: absolute;
+  background: black;
+  z-index: 1;
+  opacity: 0.7;
+}
+
+.modal {
+  position: absolute;
+  z-index: 2;
+  background: white;
+  padding: 20px;
+  width: 50%;
+  left: 25%;
+  top: 30%;
+  border-radius: 5px;
+}
+
+.modal .modal-close {
+  float: right;
+}
+
+.modal .actions {
+  text-align: right;
+}
+
+
+.close-modal {
+  display: none;
+}
+
+.open-modal {
+  display: block;
+}
+
 .no-button {
   background: none;
   border: none;
