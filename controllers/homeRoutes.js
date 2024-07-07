@@ -86,6 +86,15 @@ router.get('/book/:id', async (req, res) => {
   }
 });
 
+router.get('/login', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+  if (req.session.logged_in) {
+    res.redirect('/profile');
+    return;
+  }
+  res.render('login');
+});
+
 // Use withAuth middleware to prevent access to route
 router.get('/profile', withAuth, async (req, res) => {
   try {
@@ -93,9 +102,7 @@ router.get('/profile', withAuth, async (req, res) => {
     const readerData = await Reader.findByPk(req.session.reader_id, {
       attributes: { exclude: ['password'] },
     });
-
     const reader = readerData.get({ plain: true });
-
     res.render('profile', {
       ...reader,
       logged_in: true
@@ -105,14 +112,76 @@ router.get('/profile', withAuth, async (req, res) => {
   }
 });
 
-router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
-  if (req.session.logged_in) {
-    res.redirect('/profile');
-    return;
-  }
 
-  res.render('login');
+
+// HomeRoute for add a book and review of PROFILE
+// Use withAuth middleware to prevent access to route
+router.get('/profile/addbook', withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const readerData = await Reader.findByPk(req.session.reader_id, {
+      attributes: { exclude: ['password'] },
+    });
+     const reader = readerData.get({ plain: true });
+
+    res.render('profileaddbook', {
+      ...reader,
+      logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// HomeRoute for add a review of PROFILE
+// Use withAuth middleware to prevent access to route
+router.get('/profile/addreview', withAuth, async (req, res) => {
+  try {
+    // Find all books in db
+    const booksData = await Book.findAll();
+
+    // const review = reviewData.get({ plain: true });
+    // const reader = readerData.get({ plain: true });
+    const books = booksData.map(book => book.get({ plain: true }));
+    
+    // console.log(reader);
+    console.log(books);
+    console.log(books.length);
+    res.render('profileaddreview', {
+      books,
+      logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+});
+
+// HomeRoute for delete a review of PROFILE
+// Use withAuth middleware to prevent access to route
+router.get('/profile/deletereview', withAuth, async (req, res) => {
+  try {
+    // Find all review for a reader
+    const reviewData = await Review.findAll({
+      include: [ { model: Book}, {model: Reader} ],
+      where: { reader_id : req.session.reader_id }
+    });
+
+    // const review = reviewData.get({ plain: true });
+    // const reader = readerData.get({ plain: true });
+    const reviews = reviewData.map(review => review.get({ plain: true }));
+    
+    // console.log(reader);
+    console.log(reviews);
+    console.log(reviews.length);
+    res.render('profiledeletereview', {
+      reviews,
+      logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
 });
 
 module.exports = router;
