@@ -2,6 +2,7 @@ const sequelize = require('../config/connection');
 const { Reader, Review, Book } = require('../models');
 const { faker } = require('@faker-js/faker'); // Correct import for faker in CommonJS
 
+
 const readerData = require('./readerData.json');
 const reviewData = require('./reviewData.json');
 
