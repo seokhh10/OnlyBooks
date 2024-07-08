@@ -32,6 +32,9 @@ header button.no-button {
   color: white;
 }
 
+.main-logo {
+  vertical-align: sub;
+}
 .login, .logout {
   background-color: white;
   border-radius: 5px;
@@ -109,7 +112,7 @@ header button.no-button {
   border-left: 10px solid #6e1212;
 }
 
-.book-info h1 {
+.book-info .book-title {
   margin: auto;
   margin-top: 50px;
   font-family: cursive;
@@ -121,7 +124,7 @@ header button.no-button {
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
-  font-family: 'montserrat';
+  font-family: 'verdana';
 }
 
 .homepageReview {
@@ -131,7 +134,7 @@ header button.no-button {
 .reviews {
   flex: 2;
   margin-left: 20px;
-  font-family: 'montserrat light';
+  font-family: 'verdana';
 }
 .add-review {
   margin-bottom: 10px;
@@ -140,7 +143,7 @@ header button.no-button {
 .rating {
   font-weight: bold;
   font-size: 1.2em;
-  font-family: 'Montserrat';
+  font-family: 'c';
 }
 .username {
   font-size: 1em;
