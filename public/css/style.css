@@ -3,15 +3,15 @@ header, .project:not(:last-child) {
 }
 
 header {
-  background-color: #000000;
+  background-color: #262626;
   color: white;
-  border-bottom: 3px solid white;
+  border-bottom: 3px solid #1b89bc;
   text-align: center;
 }
 
 header h1 {
   display: inline-block;
-  font-family: Rockwell;
+  font-family: math;
 }
 
 header nav {
@@ -26,18 +26,6 @@ header a {
 header button.no-button {
   color: white;
 }
-
-.bg-black-intro {
-  background-color: black;
-  color: white;
-}
-
-.login, .logout {
-  background-color: white;
-  border-radius: 5px;
-  margin: 10px;
-}
-
 
 .backdrop {
   height: 110%;
@@ -66,6 +54,7 @@ header button.no-button {
 .modal .actions {
   text-align: right;
 }
+
 
 .close-modal {
   display: none;
@@ -96,6 +85,7 @@ header button.no-button {
   margin-left: -5px;
 }
 
+
 .container-book {
   display: flex;
 }
@@ -109,6 +99,7 @@ header button.no-button {
   border-left: 10px solid #6e1212;
 }
 
+
 .book-info h1 {
   margin: auto;
   margin-top: 50px;
@@ -121,7 +112,6 @@ header button.no-button {
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
-  font-family: 'montserrat';
 }
 
 .homepageReview {
@@ -131,7 +121,6 @@ header button.no-button {
 .reviews {
   flex: 2;
   margin-left: 20px;
-  font-family: 'montserrat light';
 }
 .add-review {
   margin-bottom: 10px;
@@ -140,7 +129,6 @@ header button.no-button {
 .rating {
   font-weight: bold;
   font-size: 1.2em;
-  font-family: 'Montserrat';
 }
 .username {
   font-size: 1em;
@@ -149,4 +137,41 @@ header button.no-button {
 .review-text {
   margin-top: 10px;
   text-align: left;
+}
+
+/* CSS for profile.handlebar */
+
+#btn-addbook {
+  width: 200px;
+  height: 60px;
+  font-size: 24px;
+  background-color:#056605;
+  margin: 5px;
+}
+
+#btn-addreview {
+  width: 200px;
+  height: 60px;
+  font-size: 24px;
+  background-color:#056605;
+  margin: 5px;
+}
+
+#btn-deletereview {
+  width: 200px;
+  height: 60px;
+  font-size: 22px;
+  background-color:#6e1212;
+  margin: 5px;
+}
+
+/* CSS for profileaddreview.handlebar */
+
+.select-book-form {
+  margin: 10px;
+  font-size: 32px;
+}
+
+.book-value {
+  background-color:grey;
 }

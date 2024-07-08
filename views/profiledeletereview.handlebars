@@ -5,14 +5,15 @@
   </div>
 </div>
 <div class="row mt-4">
-    <div class="col-md-6">
+    <div class=""> 
         {{!-- Delete a Review --}} 
         <h3>Delete a review:</h3>
+        <br> 
         {{!-- List reviews with delete button--}}
         <form class="form delete-review-form">
         
         {{#if reviews.length}}
-            <div class="col-md-6 project-list">
+            <div class="">
                 <h3>Your Reviews:</h3>
                 {{#each reviews as |review|}}
                     <div class="row mb-2">
@@ -24,7 +25,7 @@
 
                         </div>
                         <div class="col-md-4">
-                            <button class="btn btn-sm btn-danger" data-id="{{review.id}}">DELETE {{review.id}}</button>
+                            <button class="btn btn-sm btn-danger" data-id="{{review.id}}">DELETE</button>
                         </div>
                     </div>
                 {{/each}}
