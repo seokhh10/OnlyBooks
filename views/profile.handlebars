@@ -1,4 +1,4 @@
-{{!-- DISPLAY ALL READER REVIEWS for the reader that is LOGGED IN --}}
+{{!-- Display the options of the profile for a reader that is LOGGED IN --}}
 
 <div class="row">
   <div class="col-auto">
@@ -8,54 +8,19 @@
 
 <div class="row mt-4">
   <div class="col-md-6">
-    {{!-- Create new book with a Review --}} 
-    <h3>Create a new book with a review:</h3>
-
-    <form class="form new-review-form">
-      
-      <div class="form-group">
-        <label for="book-title">Book title:</label>
-        <input class="form-input" type="text" id="book-title" name="book-title" />
-      </div>
-
-      <div class="form-group">
-        <label for="book-author">Book author:</label>
-        <input class="form-input" type="text" id="book-author" name="book-author" />
-      </div>
-
-      <div class="form-group">
-        <label for="review-text">Your review:</label>
-        <input class="form-input" type="text" id="review-text" name="review-text" />
-      </div>
-
-      <div class="form-group">
-        <label for="review-rating">Your rating:</label>
-        <input class="form-input" type="number" id="review-rating" name="review-rating" />
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create</button>
-      </div>
+    <h3>Click one option</h3>
+    <form class="form profile-buttons-form">
+        <div class="Add-book">
+            <button class="btn btn-primary" id="btn-addbook" type="submit">Add a Book</button>
+        </div>
+        <div class="Add-review">
+            <button class="btn btn-primary" id="btn-addreview" type="submit">Add a Review</button>
+        </div>
+        <div class="Delete-review">
+            <button class="btn btn-primary" id="btn-deletereview" type="submit">Delete a Review</button>
+        </div>
     </form>
   </div>
+</div>
 
-
-{{!-- Reviews instead of projects 
-  {{#if projects.length}}
-  <div class="col-md-6 project-list">
-    <h3>Current Projects:</h3>
-
-    {{#each projects as |project|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/project/{{project.id}}">{{project.name}}</a></h4>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{project.id}}">DELETE</button>
-      </div>
-    </div>
-    {{/each}}
-  </div>
-  {{/if}}
-</div>  --}}
-
-<script src="./js/profile.js"></script>
+<script src='/js/profile.js'></script>

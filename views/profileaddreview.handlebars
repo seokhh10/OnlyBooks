@@ -1,0 +1,79 @@
+{{!-- Handlebars to add a review to an existing book --}}
+
+<div class="row">
+  <div class="col-auto">
+    <h2>Welcome, {{name}}!</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-auto"> 
+  </div>
+</div>
+<div class="row mt-4">
+    <div class="col-md-6">
+        {{!-- Add a Review to an existing book --}} 
+        <h3>Add a review an existing Book:</h3>
+        {{!-- List books with add review button--}}
+        
+        {{#if books.length}}
+          <form class="form select-book-form">
+              <label for="Books">Select a book:</label>
+              <select name="Books" id="books">
+                {{#each books as |book|}}
+                  <option class="book-value" id="book-value" value="{{book.id}}">{{book.title}}</option>
+                {{/each}}
+              </select>
+              <br><br>
+               {{!-- <input type="submit" value="Select"> --}}
+          </form>
+        {{/if}}
+    </div>  
+</div>
+
+
+<div class="row mt-4">
+  <div class="col-md-6">
+    {{!-- Create new book with a Review --}} 
+    <h3>Create a new review:</h3>
+
+    <form class="form add-review-form">
+      <div class="form-group">
+        <label for="review-text">Your review:</label>
+        <input class="form-input" type="text" id="review-text" name="review-text" />
+      </div>
+
+      <div class="form-group">
+        <label for="review-rating">Your rating:</label>
+        <input class="form-input" type="number" id="review-rating" name="review-rating" />
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create</button>
+      </div>
+    </form>
+  </div>
+
+<script src='/js/profileaddreview.js'></script>
+
+
+ {{!-- <form class="form select-book-form">
+        {{#if books.length}}
+            <div class="col-md-6 project-list">
+                <h3>Select a Book:</h3>
+                {{#each books as |book|}}
+                    <div class="row mb-2">
+                        <div class="col-md-8"> --}}
+                            {{!-- <h4><a href="/review/{{review.id}}">{{review.text_review}}</a></h4> --}}
+                            {{!-- <h4>Book :{{book.title}}</h4>--}}
+                            {{!-- <h4>Author :{{book.author}}</h4>
+
+                        </div>
+                        <div class="col-md-4">
+                            <button class="" data-id="{{book.id}}">Select Book{{book.id}}</button>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        {{/if}}
+
+        </form>  --}}

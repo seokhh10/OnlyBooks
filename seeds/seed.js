@@ -1,7 +1,7 @@
 const sequelize = require('../config/connection');
 const { Reader, Review, Book } = require('../models');
-const { faker } = require('@faker-js/faker'); // Correct import for faker in CommonJS
 
+const { faker } = require('@faker-js/faker'); // Correct import for faker in CommonJS
 
 const readerData = require('./readerData.json');
 const reviewData = require('./reviewData.json');
@@ -40,6 +40,7 @@ console.log('Fake Books:', fakeBooks);
 // Generate 5 fake readers
 const fakeReaders = generateFakeReaders(5);
 console.log('Fake Readers:', fakeReaders);
+
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });

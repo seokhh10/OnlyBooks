@@ -1,0 +1,40 @@
+{{!-- Handlebars to add a review to an existing book --}}
+
+<div class="row">
+  <div class="col-auto"> 
+  </div>
+</div>
+<div class="row mt-4">
+    <div class="col-md-6">
+        {{!-- Delete a Review --}} 
+        <h3>Delete a review:</h3>
+        {{!-- List reviews with delete button--}}
+        <form class="form delete-review-form">
+        
+        {{#if reviews.length}}
+            <div class="col-md-6 project-list">
+                <h3>Your Reviews:</h3>
+                {{#each reviews as |review|}}
+                    <div class="row mb-2">
+                        <div class="col-md-8">
+                            {{!-- <h4><a href="/review/{{review.id}}">{{review.text_review}}</a></h4> --}}
+                            <h4>Reader : {{review.reader.name}}!</h4>
+                            <h4>Book :{{review.book.title}}</h4>
+                            <h4>Review :{{review.review_text}}</h4>
+
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-sm btn-danger" data-id="{{review.id}}">DELETE {{review.id}}</button>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        {{/if}}
+
+        </form>
+
+    </div>  
+</div>
+
+
+<script src='/js/profiledeletereview.js'></script>
