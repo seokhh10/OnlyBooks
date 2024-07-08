@@ -59,3 +59,13 @@ document
 document
   .querySelector('.signup-form')
   .addEventListener('submit', signupFormHandler);
+
+if (window.location.href.includes('login')) {
+  document.getElementsByTagName('html')[0].classList.add('bg-black-intro');
+  document.getElementById('log-in').setAttribute('style', 'display: none');
+  document.getElementsByTagName('h1')[0].setAttribute('style', 'font-size: 50px');
+} else {
+  document.getElementsByTagName('html')[0].classList.remove('bg-black-intro');
+  document.getElementById('log-in').setAttribute('style', 'display: block');
+  document.getElementsByTagName('h1')[0].setAttribute('style', '');
+}
