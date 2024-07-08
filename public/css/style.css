@@ -3,15 +3,15 @@ header, .project:not(:last-child) {
 }
 
 header {
-  background-color: #262626;
+  background-color: #000000;
   color: white;
-  border-bottom: 3px solid #1b89bc;
+  border-bottom: 3px solid white;
   text-align: center;
 }
 
 header h1 {
   display: inline-block;
-  font-family: math;
+  font-family: Rockwell;
 }
 
 header nav {
@@ -26,6 +26,21 @@ header a {
 header button.no-button {
   color: white;
 }
+
+.bg-black-intro {
+  background-color: black;
+  color: white;
+}
+
+.main-logo {
+  vertical-align: sub;
+}
+.login, .logout {
+  background-color: white;
+  border-radius: 5px;
+  margin: 10px;
+}
+
 
 .backdrop {
   height: 110%;
@@ -54,7 +69,6 @@ header button.no-button {
 .modal .actions {
   text-align: right;
 }
-
 
 .close-modal {
   display: none;
@@ -85,7 +99,6 @@ header button.no-button {
   margin-left: -5px;
 }
 
-
 .container-book {
   display: flex;
 }
@@ -99,8 +112,7 @@ header button.no-button {
   border-left: 10px solid #6e1212;
 }
 
-
-.book-info h1 {
+.book-info .book-title {
   margin: auto;
   margin-top: 50px;
   font-family: cursive;
@@ -112,6 +124,7 @@ header button.no-button {
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
+  font-family: 'verdana';
 }
 
 .homepageReview {
@@ -121,6 +134,7 @@ header button.no-button {
 .reviews {
   flex: 2;
   margin-left: 20px;
+  font-family: 'verdana';
 }
 .add-review {
   margin-bottom: 10px;
@@ -129,6 +143,7 @@ header button.no-button {
 .rating {
   font-weight: bold;
   font-size: 1.2em;
+  font-family: 'c';
 }
 .username {
   font-size: 1em;
