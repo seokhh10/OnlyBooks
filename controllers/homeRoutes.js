@@ -69,13 +69,9 @@ router.get('/book/:id', async (req, res) => {
       .map(review => review.get({ plain: true }))
       .map(async (review) => ({
         ...review,
-        readerName: (await Reader.findByPk(review.reader_id))?.get({ plain: true })?.name,
+        readerName: (await Reader.findByPk(review.reader_id))?.get({ plain: true })?.name
       }))
     )
-
-    console.log('reviews >>>', reviews);
-    console.log('>>>>>>>>>>>>>>>');
-    console.log('book >>>', book);
 
     res.render('book', {
       ...{ book, reviews },
@@ -116,7 +112,7 @@ router.get('/profile', withAuth, async (req, res) => {
 
 // HomeRoute for add a book and review of PROFILE
 // Use withAuth middleware to prevent access to route
-router.get('/profile/addbook', withAuth, async (req, res) => {
+router.get('/profile/addBook', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const readerData = await Reader.findByPk(req.session.reader_id, {
@@ -124,7 +120,7 @@ router.get('/profile/addbook', withAuth, async (req, res) => {
     });
      const reader = readerData.get({ plain: true });
 
-    res.render('profileaddbook', {
+    res.render('profileAddBook', {
       ...reader,
       logged_in: true
     });
@@ -135,19 +131,17 @@ router.get('/profile/addbook', withAuth, async (req, res) => {
 
 // HomeRoute for add a review of PROFILE
 // Use withAuth middleware to prevent access to route
-router.get('/profile/addreview', withAuth, async (req, res) => {
+router.get('/profile/addReview', withAuth, async (req, res) => {
   try {
     // Find all books in db
     const booksData = await Book.findAll();
 
-    // const review = reviewData.get({ plain: true });
-    // const reader = readerData.get({ plain: true });
     const books = booksData.map(book => book.get({ plain: true }));
     
     // console.log(reader);
     console.log(books);
     console.log(books.length);
-    res.render('profileaddreview', {
+    res.render('profileAddReview', {
       books,
       logged_in: true
     });
@@ -159,7 +153,7 @@ router.get('/profile/addreview', withAuth, async (req, res) => {
 
 // HomeRoute for delete a review of PROFILE
 // Use withAuth middleware to prevent access to route
-router.get('/profile/deletereview', withAuth, async (req, res) => {
+router.get('/profile/deleteReview', withAuth, async (req, res) => {
   try {
     // Find all review for a reader
     const reviewData = await Review.findAll({
@@ -167,14 +161,12 @@ router.get('/profile/deletereview', withAuth, async (req, res) => {
       where: { reader_id : req.session.reader_id }
     });
 
-    // const review = reviewData.get({ plain: true });
-    // const reader = readerData.get({ plain: true });
     const reviews = reviewData.map(review => review.get({ plain: true }));
     
     // console.log(reader);
     console.log(reviews);
     console.log(reviews.length);
-    res.render('profiledeletereview', {
+    res.render('profileDeleteReview', {
       reviews,
       logged_in: true
     });
