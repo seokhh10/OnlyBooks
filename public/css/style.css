@@ -127,10 +127,6 @@ header button.no-button {
   font-family: 'verdana';
 }
 
-.homepageReview {
-  
-}
-
 .reviews {
   flex: 2;
   margin-left: 20px;
@@ -180,7 +176,7 @@ header button.no-button {
   margin: 5px;
 }
 
-/* CSS for profileaddreview.handlebar */
+/* CSS for profileAddReview.handlebar */
 
 .select-book-form {
   margin: 10px;
@@ -189,4 +185,23 @@ header button.no-button {
 
 .book-value {
   background-color:grey;
+}
+
+/* CSS for homepage */
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-title a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.card-title a:hover {
+  text-decoration: underline;
 }
